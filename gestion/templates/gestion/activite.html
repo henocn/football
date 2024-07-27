@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form class="justify-content-center d-flex" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset class="col-10 col-md-8 p-3 border m-3">
+        {{ form.as_p }}
+        <button class="btn btn-primary col-md-5 col-6" type="submit">Ajouter l'activité</button>
+    </fieldset>
+</form>
+<ul>
+  {% for activite in activites %}
+    <li>
+      <b>Activité</b> : {{ activite.type }}<br>
+      <b>Description</b> : {{ activite.description }}<br>
+      <b>Date</b> : {{ activite.date }}<br>
+      <b>Élèves participants :</b>
+      <ul>
+        {% for eleve in activite.eleves.all %}
+          <li>{{ eleve.nom }} {{ eleve.prenom }}</li>
+        {% endfor %}
+      </ul><br>
+    </li>
+  {% endfor %}
+    <hr>
+</ul>
+{% endblock %}
+

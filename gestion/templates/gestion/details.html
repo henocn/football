@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+   <h3>Les informations de base sur l'élève</h3> <br>
+    <div class="row ms-3 align-items-end">
+        <img class="col-4 col-md-3 mb-3" src="{{ eleve.profil.url }}" alt="" style="height: 220px;">
+        <div class="col mb-3">
+            <b>Nom : </b> {{ eleve.nom }} <br>
+            <b>Prenom : </b> {{ eleve.prenom }} <br>
+            <b>Date de naissance : </b> {{ eleve.dateNaiss }} <br>
+            <b>Lieu de résidence : </b> {{ eleve.residence }} <br> <br>
+            <a class="btn btn-primary col-md-5 col-6 disabled" target="_blank" class="nav-link" href="{% url 'generer_pdf' %}">Générer un PDF</a> <br>
+        </div> <hr>
+    </div>
+
+    <h3>Participation de l'élève aux activités</h3>
+    <ul>
+    {% for activite in activites %}
+        <li>
+            <b>Type d'activité : </b>{{activite.type }} <br>
+            <b>Date de déroulement : </b>{{activite.date }} <br> <br>
+        </li>
+    {% endfor %}
+    </ul><hr>
+
+    <h3>Les dépenses éffectuées pour le compte de l'élève</h3>
+    <ul>
+    {% for depense in depenses %}
+        <li>
+            <b>Type de dépense : </b>{{depense.type }} <br>
+            <b>Informations : </b>{{depense.infos }} <br>
+            <b>Date de la dépense : </b>{{depense.date }} <br>
+            <b>Somme dépensée : </b>{{ depense.montant }} FCFA<br>
+            {% if depense.recu %}<a target="_blank" href="{{ depense.recu.url }}">Voir le réçu</a>{% endif %}
+        </li> <br>
+    {% endfor %}
+    </ul>
+    <h3> <b>Les depenses totales s'élèvent à</b> : <span style="color:red;">{{depense_total}} FCFA</span></h3> <br> <br>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}<title> Accueil </title>{% endblock %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'gestion/css/bootstrap.css' %}">
+    <script src="{% static 'gestion/js/bootstrap.bundle.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'gestion/css/style.css' %}">
+</head>
+<body>
+    <nav class="navbar fixed-top  navbar-expand-lg navbar-light bg-warning">
+        <div class="container-fluid">
+            <a class="navbar-brand align-self-center" href="{% url 'accueil' %}">PAGE D'ACCUEIL</a>
+            <button class="navbar-toggler" data-bs-target="#contenu" data-bs-toggle="collapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div id="contenu" class="collapse navbar-collapse justify-content-end ">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'ajouter_eleve' %}">Ajouter un eleve</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'activite' %}">Activités</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'ajouter_depense' %}">Ajouter une dépense</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" target="_blank" class="nav-link" href="{% url 'generer_pdf' %}">Générer un PDF</a> <br>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 py-0 container-lg pt-5">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+</body>
+</html>

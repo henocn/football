@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Voici la liste des eleves déjà enregistés</h2>
+    {% for eleve in eleves %}
+        <b>Nom : </b> {{ eleve.nom }} <br>
+        <b>Prenom : </b> {{ eleve.prenom }} <br>
+        <a href="{% url 'details_eleve' eleve.nom eleve.prenom %}">Plus de details</a><br><hr>
+    {% endfor %}
+{% endblock %}
